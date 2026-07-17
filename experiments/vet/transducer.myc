@@ -1,0 +1,26 @@
+// nodule: std.iter.transducer
+// [`Transducer<E, F>`] — a composable, source-independent step transformer (spec §3/§4).
+//
+// A transducer is a description of a pipeline of transformations (`map`, `filter`, …) that
+// fuses into a **single** pass over the source — one `for` fold, no intermediate allocations
+// from intermediate `Foldable`s. It is *source-independent*: the same transducer can be
+// applied to any `Foldable<E>`.
+//
+// # Fusion law (spec §7-Q5 / VR-5)
+// The associativity of `compose` and the fusion law (`transduce(compose(t1, t2)) = sequential
+// t1 then t2`) is an **`Empirical`** property checked in tests — NOT tagged `Proven` without a
+// checked theorem. See the `transduce_fusion_law_empirical` test in `lib.rs`.
+//
+// # EXPLAIN (C3)
+// The fused step pipeline is inspectable via [`Transducer::describe`], which returns a
+// human-readable description of each step in composition order.
+//
+// # Guarantee tag: `Exact` (the transducer is a pure structural description)
+// Applying the transducer (via [`crate::transduce`]) is total and inherits the kernel fold's
+// totality guarantee (spec §4 `transduce` row).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule std.iter.transducer;
+
+

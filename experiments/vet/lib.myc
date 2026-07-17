@@ -1,0 +1,108 @@
+// nodule: std.iter
+// `std.iter` — iterator / fold / transducer combinators over the kernel `for` fold (M-526).
+//
+// The ergonomic combinator layer — `map`, `filter`, `fold`, `scan`, `zip`, `take`, `count`,
+// `any_with_witness`/`all_with_witness`, `find`, `position`, `chain`, `skip`, `step_by`,
+// `enumerate`, `flat_map`, `reduce`, `transduce`, and an explicitly-named lazy surface
+// (`lazy_unfold` via [`Lazy`], `lazy_take`) — expressed over the one iteration primitive the
+// kernel has: the RFC-0007 §4.8 `for` fold, a bounded walk of a linearly-recursive value that
+// the §4.5 totality checker classifies **`Total` with zero extension** (iteration is bounded
+// *by construction* because a value is finite and acyclic, §4.7).
+//
+// # Honesty crux: totality preservation
+//
+// Every eager combinator in this module is **total and terminating** because it lowers to (or
+// composes) a single RFC-0007 §4.8 `for` fold over a finite source. Termination is
+// **inherited** from the kernel's `Total`-by-construction fold — it is not re-proved here
+// (KC-3: this module adds no trusted code). The guarantee matrix ([`guarantee_matrix::MATRIX`])
+// records this per combinator; the sole exception is [`Lazy::unfold`], which is honestly tagged
+// [`GuaranteeStrength::Declared`] and typed as a distinct [`Lazy<E>`] (no silent thunk).
+//
+// # Short-circuit combinators (`any`/`all`/`find`) — FLAG Q3 / RFC-0007 §4.8
+//
+// RFC-0007 §4.8 excludes `break`/`loop`/`while`; early exit is described there as "a later,
+// explicit form (fold-to-`Option`)". Accordingly, [`any_with_witness`], [`all_with_witness`],
+// and [`find`] in this module are implemented as **done-flag folds** — the accumulator carries
+// a done-flag and the step function stops updating once the condition fires, but the fold
+// **still walks the full spine**. This is **total** (termination is guaranteed) but **not
+// short-circuiting in the cost sense** (extra work is done past the first match).
+//
+// **FLAG (RFC-0007 §4.8 / Q3 in spec §7):** whether a true early-termination fold primitive
+// (a `for` that may stop before the spine end, while remaining `Total`) is a worthwhile kernel
+// extension is an **open question** for RFC-0007, NOT decided here.
+//
+// # `Foldable<E>` — monomorphic placeholder (FLAG Q2 / RFC-0007 r4 deferred traits)
+//
+// The spec (§3) writes combinators as ranging over `Foldable<E>` — a linear-recursive value of
+// element type `E` (RFC-0007 §4.8 shape: `nil | cons(E, T)`). Whether `Foldable` is a *trait*
+// or per-type monomorphic depends on the trait/typeclass story, which RFC-0007 r4 **defers**
+// (traits/LR-2 are NOT ratified).
+//
+// **FLAG (RFC-0007 r4 / Q2 in spec §7):** this implementation uses a newtype
+// [`Foldable<E>`] backed by `Vec<E>` as a concrete stand-in for the spine shape. When the
+// RFC-0007 trait story lands, `Foldable` must be generalised (or replaced by a trait bound).
+// The combinator implementations must not change; only the abstraction boundary does.
+//
+// # C1 — never-silent
+//
+// - Partial-in-result reductions (`reduce`, `find`, `position`) return `Option` (never a
+//   sentinel).
+// - `step_by(0)` returns `Err(`[`ZeroStep`]`)` — never a silent step-of-1.
+// - `zip` truncates to the shorter spine; the truncation point is *reportable* via
+//   [`ZipOutcome`] (C3 EXPLAIN; Q1 in spec §7).
+// - `zip_exact` returns `Err(`[`error::ZipLengthMismatch`]`)` on length mismatch.
+// - The lazy source is explicitly typed as [`Lazy<E>`] and the `Declared` tag is embedded in
+//   the guarantee matrix.
+//
+// # C5 — above the small kernel (KC-3)
+//
+// No `unsafe`, no FFI (ADR-014). All combinators are pure and consume `mycelium-core` types
+// only for the guarantee lattice. The `Foldable` spine is a thin `Vec<E>` stand-in (Q2).
+//
+// # Design spec
+// `docs/spec/stdlib/iter.md` (M-526, #167); contract: RFC-0016 §4.1 (C1–C6).
+//
+// # Open questions (FLAGs carried from spec §7)
+//
+// - **(Q1)** `zip` length-mismatch policy — truncate + `ZipOutcome` + `zip_exact` as floor.
+// - **(Q2)** `Foldable` trait vs monomorphic — FLAG for RFC-0007 trait story.
+// - **(Q3)** Short-circuit under a `Total` fold — done-flag fold; FLAG to RFC-0007 §4.8.
+// - **(Q4)** `Lazy` surface in `iter` vs own module — kept here, type-segregated.
+// - **(Q5)** Transducer fusion law — `Empirical` property test; NOT `Proven` (VR-5).
+//
+// ## Ambient Representation (RFC-0012 §8-Q3)
+//
+// This crate's public API participates in the RFC-0012 ambient-representation contract:
+// the representation choice (binary/ternary/dense/VSA) is implicit at the call site but
+// always reified, queryable, and EXPLAIN-able — never a black box (C3/SC-3).
+// [Declared per RFC-0012; direction accepted in DN-07 §8-Q3; per-ring pass scheduled as M-540.]
+//
+// **For this crate (Ring 2, Tier B):** Iterators are representation-neutral combinators —
+// element representation passes through unchanged. A `map` over a `Seq` of `Binary{32}` values
+// produces `Binary{32}` values (or whatever the mapping function returns); no representation
+// is coerced by the combinator itself. Cross-representation element transformation requires an
+// explicit swap in the mapping function.
+//
+// # Stability (DN-66 freeze, 2026-07-01)
+//
+// This crate's public API, as documented in `docs/spec/stdlib/iter.md` (spec status:
+// Accepted (2026-06-20)) and asserted by its guarantee-matrix table, is the **frozen baseline** per
+// [DN-66](../../../docs/notes/DN-66-Stdlib-Stable-API-Freeze-And-Rust-Crate-Retirement-Status.md).
+// A future breaking change here needs a spec amendment + changelog entry, not a silent edit (G2).
+//
+// **Unfrozen for the gap-closure window (ADR-045, Accepted 2026-07-10):** this DN-66 freeze is
+// lifted per [ADR-045](../../../docs/adr/ADR-045-Kernel-And-Lexicon-Unfreeze-For-Early-Gap-Closure.md)
+// for a bounded window; a breaking change here still needs a spec amendment + changelog entry
+// (G2), not a silent edit — the window closes per the ADR-045 §2.4 re-freeze conditions, bound by
+// the DN-99 residual worklist.
+// It remains the RFC-0031 D6 differential-oracle reference; the same-named `lib/std/iter.myc` prototype is a narrower, structurally distinct surface (DN-66 S3.1) — the D6 retirement trigger has not fired, so no item here is `#[deprecated]`.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule std.iter;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: std.iter.error) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type ZeroStep = ZeroStep;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: std.iter.zip_outcome) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type ZipOutcome = ZipOutcome(Binary{64}, Binary{64}, Binary{64});

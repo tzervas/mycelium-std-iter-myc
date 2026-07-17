@@ -1,0 +1,27 @@
+// nodule: std.iter.lazy
+// [`Lazy<E>`] — the explicitly-named, type-segregated demand-driven surface (spec §3/§4/Q4).
+//
+// A `Lazy<E>` is a potentially-unbounded source. It is **NOT total** and is tagged
+// [`Declared`](mycelium_core::GuaranteeStrength::Declared) — the unboundedness is *asserted
+// and flagged*, never proven away. It is a distinct named type; there is no implicit coercion
+// from [`Foldable`] to `Lazy<E>` (C1 / C4).
+//
+// The only sanctioned way to turn a `Lazy<E>` back into a total, foldable value is
+// [`lazy_take`](crate::lazy_take) — an explicit `Nat` bound that re-establishes the totality
+// guarantee (spec §3, the bridge sentence; spec §4 `lazy_take` row).
+//
+// # FLAG (spec §7-Q4)
+// Whether the `Lazy` surface belongs in `iter` or its own module is an open question. It is
+// kept here, type- and name-segregated, with a `Declared` tag. Revisit if the surface grows.
+//
+// # Guarantee tag: `Declared` (not total — the source may be unbounded)
+// The `Declared` tag is the honest floor (VR-5): we assert the source *may not terminate*
+// without a bound, but we cannot prove it terminates for a given step function `f`. This is
+// the module's single place where totality is not preserved, and it is named, typed, and
+// tagged accordingly (spec §4 "Tag justification").
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule std.iter.lazy;
+
+

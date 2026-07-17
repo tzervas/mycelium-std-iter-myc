@@ -1,0 +1,19 @@
+// nodule: std.iter.foldable
+// [`Foldable<E>`] — the concrete finite linear-recursive value type for `std.iter`.
+//
+// This is the stand-in for the RFC-0007 §4.8 spine shape (`nil | cons(E, T)`) until the
+// trait/typeclass story lands (RFC-0007 r4 deferred). Backed by `Vec<E>`, it is:
+// - **Finite and acyclic** by construction (a `Vec` is always bounded).
+// - **Value-semantic**: `clone()` produces an independent copy (C4).
+// - **`#[forbid(unsafe_code)]` clean**.
+//
+// # FLAG (spec §7-Q2 / RFC-0007 r4 deferred traits)
+// When the RFC-0007 trait story lands, `Foldable` must be generalised to a trait or replaced
+// by a trait bound. The combinator implementations in `lib.rs` must not change; only this
+// abstraction boundary does.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule std.iter.foldable;
+
+

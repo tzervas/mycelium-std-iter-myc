@@ -1,0 +1,340 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+  "emitted_items": [
+    "co-include:ZeroStep",
+    "co-include:ZipOutcome"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 1,
+      "col": 1,
+      "category": "InnerAttr",
+      "rust_construct": "InnerAttr",
+      "snippet": "# ! [forbid (unsafe_code)]",
+      "reason": "crate/file-level inner attributes (#![...]) are not transpiled (no nodule-header equivalent for these Rust-specific directives)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 100,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod error ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "error"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 101,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod foldable ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "foldable"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 102,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod guarantee_matrix ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "guarantee_matrix"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 103,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod lazy ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "lazy"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 104,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod transducer ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "transducer"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 105,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod zip_outcome ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "zip_outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 108,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use foldable :: Foldable ;",
+      "reason": "`use foldable::Foldable` — `Foldable` is not among sibling `foldable`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 109,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use lazy :: Lazy ;",
+      "reason": "`use lazy::Lazy` — `Lazy` is not among sibling `lazy`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 110,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use mycelium_core :: GuaranteeStrength ;",
+      "reason": "`use mycelium_core::GuaranteeStrength` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 111,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use transducer :: Transducer ;",
+      "reason": "`use transducer::Transducer` — `Transducer` is not among sibling `transducer`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 116,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Apply `f` to every element, producing a new `Foldable<F>`.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — one `for` fold over a finite source; RFC-0007 §4.8)\"] # [doc = \" Totality is inherited from the kernel's `Total`-by-construction fold.\"] # [doc = \" The closure's guarantee is the closure's tag; `map` itself is exact.\"] # [doc = \"\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn map < E , F > (source : Foldable < E > , f : impl FnMut (E) -> F) -> Foldable < F > { Foldable :: from_vec (source . into_vec () . into_iter () . map (f) . collect ()) }",
+      "reason": "unsupported Rust type form `impl FnMut (E) -> F`",
+      "item_name": "map"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 129,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Keep only elements for which `pred` returns `true`.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — one `for` fold)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn filter < E > (source : Foldable < E > , pred : impl FnMut (& E) -> bool) -> Foldable < E > { Foldable :: from_vec (source . into_vec () . into_iter () . filter (pred) . collect ()) }",
+      "reason": "unsupported Rust type form `impl FnMut (& E) -> bool`",
+      "item_name": "filter"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 139,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Running accumulator fold — length-preserving (one output element per input element).\"] # [doc = \"\"] # [doc = \" `scan(source, init, f)` produces `[f(init, e₀), f(f(init, e₀), e₁), …]`.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — one `for` fold; length-preserving by construction)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn scan < E : Clone , A : Clone > (source : Foldable < E > , init : A , mut f : impl FnMut (A , E) -> A ,) -> Foldable < A > { let mut acc = init ; Foldable :: from_vec (source . into_vec () . into_iter () . map (| e | { acc = f (acc . clone () , e) ; acc . clone () }) . collect () ,) }",
+      "reason": "type parameter `E` carries a bound — type_params/fn generics are bare identifiers only in this grammar fragment",
+      "item_name": "scan"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 165,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Pair each element with its zero-based index.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — one `for` fold)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn enumerate < E > (source : Foldable < E >) -> Foldable < (usize , E) > { Foldable :: from_vec (source . into_vec () . into_iter () . enumerate () . collect ()) }",
+      "reason": "qualified/associated-function call `Foldable :: from_vec` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "enumerate"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 175,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Map each element to a `Foldable<F>` and flatten — finite-of-finite is finite (§4.7).\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — outer fold + inner spine walks both bounded)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn flat_map < E , F > (source : Foldable < E > , mut f : impl FnMut (E) -> Foldable < F >) -> Foldable < F > { Foldable :: from_vec (source . into_vec () . into_iter () . flat_map (| e | f (e) . into_vec ()) . collect () ,) }",
+      "reason": "unsupported Rust type form `impl FnMut (E) -> Foldable < F >`",
+      "item_name": "flat_map"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 193,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The §4.8 `for` fold, surfaced directly.\"] # [doc = \"\"] # [doc = \" Walks the full spine of `source`, applying `f` left-to-right with accumulator `init`.\"] # [doc = \" This IS the RFC-0007 §4.8 `for` fold primitive.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (the primitive — total by kernel construction; RFC-0007 §4.8)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn fold < E , A > (source : Foldable < E > , init : A , f : impl FnMut (A , E) -> A) -> A { source . into_vec () . into_iter () . fold (init , f) }",
+      "reason": "unsupported Rust type form `impl FnMut (A , E) -> A`",
+      "item_name": "fold"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 206,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Reduce a non-empty `Foldable` with a combining function, returning `None` on empty input.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — total, but partial-in-result)\"] # [doc = \" # Fallibility: `None` on empty input (C1 — never a sentinel)\"] # [doc = \" # Effects: none\"] # [must_use] pub fn reduce < E > (source : Foldable < E > , f : impl FnMut (E , E) -> E) -> Option < E > { let mut iter = source . into_vec () . into_iter () ; let first = iter . next () ? ; Some (iter . fold (first , f)) }",
+      "reason": "unsupported Rust type form `impl FnMut (E , E) -> E`",
+      "item_name": "reduce"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 218,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Count the number of elements in `source`.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — one `for` fold)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn count < E > (source : Foldable < E >) -> usize { source . into_vec () . len () }",
+      "reason": "method call `.len(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__len` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `len(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "count"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 228,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Return `true` if any element satisfies `pred`, together with an [`AnyAllWitness`].\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — done-flag `for` fold; total, full-spine walk)\"] # [doc = \"\"] # [doc = \" # Short-circuit note (FLAG — RFC-0007 §4.8 / Q3)\"] # [doc = \" Implemented as a **done-flag fold**: once `pred` fires the done-flag is set but the fold\"] # [doc = \" continues to the end of the spine. **Total** (guaranteed termination) but NOT\"] # [doc = \" short-circuiting in the cost sense. Whether a true early-termination primitive is worthwhile\"] # [doc = \" is OPEN for RFC-0007 §4.8 — see FLAG Q3. Do not resolve here.\"] # [doc = \"\"] # [doc = \" # EXPLAIN: the done-flag decision is reified\"] # [doc = \" The returned [`AnyAllWitness`] carries the index of the first matching element so the caller\"] # [doc = \" can inspect *where* the done-flag fired (C3).\"] # [doc = \"\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn any_with_witness < E > (source : Foldable < E > , pred : impl Fn (& E) -> bool ,) -> (bool , AnyAllWitness) { let mut first_match : Option < usize > = None ; let mut idx : usize = 0 ; let result = fold (source , false , | done , e | { let fired = ! done && pred (& e) ; if fired { first_match = Some (idx) ; } idx = idx . saturating_add (1) ; done || fired }) ; (result , AnyAllWitness { first_match }) }",
+      "reason": "unsupported Rust type form `impl Fn (& E) -> bool`",
+      "item_name": "any_with_witness"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 262,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Return `true` if all elements satisfy `pred`, together with an [`AnyAllWitness`].\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — done-flag `for` fold; total, full-spine walk)\"] # [doc = \"\"] # [doc = \" # Short-circuit note (FLAG — RFC-0007 §4.8 / Q3)\"] # [doc = \" Done-flag fold: once an element fails `pred` the done-flag is set but the fold continues.\"] # [doc = \" Whether a true early-termination primitive is worthwhile is OPEN for RFC-0007 §4.8 — FLAG Q3.\"] # [doc = \"\"] # [doc = \" # EXPLAIN: the done-flag decision is reified\"] # [doc = \" The returned [`AnyAllWitness`] carries the index of the first element that *failed* `pred`.\"] # [doc = \"\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn all_with_witness < E > (source : Foldable < E > , pred : impl Fn (& E) -> bool ,) -> (bool , AnyAllWitness) { let mut first_fail : Option < usize > = None ; let mut idx : usize = 0 ; let result = fold (source , true , | still_all , e | { let failed = still_all && ! pred (& e) ; if failed { first_fail = Some (idx) ; } idx = idx . saturating_add (1) ; still_all && ! failed }) ; (result , AnyAllWitness { first_match : first_fail , } ,) }",
+      "reason": "unsupported Rust type form `impl Fn (& E) -> bool`",
+      "item_name": "all_with_witness"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 298,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Return the first element satisfying `pred`, or `None` if no element matches.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — done-flag `for` fold; total, full-spine walk)\"] # [doc = \"\"] # [doc = \" # Short-circuit note (FLAG — RFC-0007 §4.8 / Q3)\"] # [doc = \" Done-flag fold: the accumulator is `Option<E>`; once a match is found it is preserved\"] # [doc = \" unchanged for the remainder of the fold. The fold walks the full spine. FLAG Q3.\"] # [doc = \"\"] # [doc = \" # Fallibility: `None` when no match (C1 — never a sentinel)\"] # [doc = \" # Effects: none\"] # [must_use] pub fn find < E : Clone > (source : Foldable < E > , pred : impl Fn (& E) -> bool) -> Option < E > { fold (source , None , | found , e | { if found . is_none () && pred (& e) { Some (e) } else { found } }) }",
+      "reason": "type parameter `E` carries a bound — type_params/fn generics are bare identifiers only in this grammar fragment",
+      "item_name": "find"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 319,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Return the zero-based index of the first element satisfying `pred`, or `None` if none.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — done-flag `for` fold; total)\"] # [doc = \" # Fallibility: `None` when no match (C1)\"] # [doc = \" # Effects: none\"] # [must_use] pub fn position < E > (source : Foldable < E > , pred : impl Fn (& E) -> bool) -> Option < usize > { fold (source , (None :: < usize > , 0usize) , | (found , idx) , e | { if found . is_none () && pred (& e) { (Some (idx) , idx . saturating_add (1)) } else { (found , idx . saturating_add (1)) } }) . 0 }",
+      "reason": "unsupported Rust type form `impl Fn (& E) -> bool`",
+      "item_name": "position"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 340,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Pair elements from two `Foldable`s, truncating to the shorter spine.\"] # [doc = \"\"] # [doc = \" Returns the paired `Foldable<(E, F)>` together with a [`ZipOutcome`] that records the\"] # [doc = \" truncation point (C3 EXPLAIN — the truncation is never silent, C1).\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — total; explicit length policy)\"] # [doc = \" # Fallibility: total (truncation is not an error — it is reportable via `ZipOutcome`)\"] # [doc = \" # Effects: none\"] # [doc = \" # EXPLAIN: [`ZipOutcome`] records the lengths and which side was truncated (Q1)\"] # [must_use] pub fn zip < E , F > (left : Foldable < E > , right : Foldable < F >) -> (Foldable < (E , F) > , ZipOutcome) { let left_len = left . len () ; let right_len = right . len () ; let paired : Vec < (E , F) > = left . into_vec () . into_iter () . zip (right . into_vec ()) . collect () ; let result_len = paired . len () ; let outcome = ZipOutcome :: new (left_len , right_len , result_len) ; (Foldable :: from_vec (paired) , outcome) }",
+      "reason": "method call `.len(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__len` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `len(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "zip"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 359,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Pair elements from two `Foldable`s; return `Err(ZipLengthMismatch)` if lengths differ.\"] # [doc = \"\"] # [doc = \" The fallible, exact-length variant (spec §7-Q1 proposal). On success the lengths match\"] # [doc = \" exactly and no truncation occurs; on failure the error carries both lengths (C1/C3).\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact`\"] # [doc = \" # Fallibility: `Err(ZipLengthMismatch)` when lengths differ (C1 — never truncates silently)\"] # [doc = \" # Effects: none\"] pub fn zip_exact < E , F > (left : Foldable < E > , right : Foldable < F > ,) -> Result < Foldable < (E , F) > , error :: ZipLengthMismatch > { let left_len = left . len () ; let right_len = right . len () ; if left_len != right_len { return Err (error :: ZipLengthMismatch { left_len , right_len , }) ; } let paired : Vec < (E , F) > = left . into_vec () . into_iter () . zip (right . into_vec ()) . collect () ; Ok (Foldable :: from_vec (paired)) }",
+      "reason": "qualified type path `error :: ZipLengthMismatch` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "zip_exact"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 383,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Append all elements of `right` after `left` — two finite spines remain finite.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — one conceptual `for` fold over the concatenated spine)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn chain < E > (left : Foldable < E > , right : Foldable < E >) -> Foldable < E > { let mut v = left . into_vec () ; v . extend (right . into_vec ()) ; Foldable :: from_vec (v) }",
+      "reason": "method call `.into_vec(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__into_vec` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `into_vec(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "chain"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 397,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Keep at most the first `n` elements. If `n ≥ len(source)`, returns the entire source.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — the bound is a `Nat` value, not a promise)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn take < E > (source : Foldable < E > , n : usize) -> Foldable < E > { Foldable :: from_vec (source . into_vec () . into_iter () . take (n) . collect ()) }",
+      "reason": "qualified/associated-function call `Foldable :: from_vec` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "take"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 407,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Drop the first `n` elements, returning the remainder. If `n ≥ len(source)`, returns empty.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [must_use] pub fn skip < E > (source : Foldable < E > , n : usize) -> Foldable < E > { Foldable :: from_vec (source . into_vec () . into_iter () . skip (n) . collect ()) }",
+      "reason": "qualified/associated-function call `Foldable :: from_vec` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "skip"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 417,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Keep every `k`-th element (0-indexed). Returns `Err(ZeroStep)` when `k = 0`.\"] # [doc = \"\"] # [doc = \" `step_by(source, 1)` is the identity; `step_by(source, 2)` keeps indices 0, 2, 4, …\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited)\"] # [doc = \" # Fallibility: `Err(ZeroStep)` when `k = 0` (C1 — no silent step-of-1)\"] # [doc = \" # Effects: none\"] pub fn step_by < E > (source : Foldable < E > , k : usize) -> Result < Foldable < E > , ZeroStep > { if k == 0 { return Err (ZeroStep) ; } Ok (Foldable :: from_vec (source . into_vec () . into_iter () . step_by (k) . collect () ,)) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "step_by"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 435,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Apply a [`Transducer<E, F>`] to `source`, reducing into `init` with `f`.\"] # [doc = \"\"] # [doc = \" A transducer is a source-independent step transformer that **fuses into a single `for` fold**\"] # [doc = \" — one pass over the spine. The pipeline is inspectable via [`Transducer::describe`] (C3).\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (inherited — fuses to one `for` fold)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [doc = \" # EXPLAIN (C3): [`Transducer::describe`] exposes the fused step pipeline\"] # [doc = \"\"] # [doc = \" # Property obligation (spec §7-Q5 / VR-5)\"] # [doc = \" The fusion law is an `Empirical` property checked in tests — NOT tagged `Proven` (VR-5).\"] # [must_use] pub fn transduce < E : 'static , F : 'static , A > (source : Foldable < E > , xf : & Transducer < E , F > , init : A , f : impl FnMut (A , F) -> A ,) -> A { let transformed : Vec < F > = xf . apply (source . into_vec ()) ; transformed . into_iter () . fold (init , f) }",
+      "reason": "type parameter `E` carries a bound — type_params/fn generics are bare identifiers only in this grammar fragment",
+      "item_name": "transduce"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 460,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Convert a [`Lazy<E>`] back into a bounded, total [`Foldable<E>`] by applying a `Nat` bound.\"] # [doc = \"\"] # [doc = \" This is the **only** sanctioned way to turn an unbounded `Lazy` source into a total, foldable\"] # [doc = \" value — the unbounded→bounded transition is an explicit call, not an implicit cutoff.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` — total *given the bound* (the `Nat` bound makes it terminating)\"] # [doc = \" # Fallibility: total\"] # [doc = \" # Effects: none\"] # [doc = \" # EXPLAIN: the bound applied is the `n` parameter — always visible to the caller\"] # [must_use] pub fn lazy_take < E : 'static > (source : Lazy < E > , n : usize) -> Foldable < E > { source . take (n) }",
+      "reason": "type parameter `E` carries a bound — type_params/fn generics are bare identifiers only in this grammar fragment",
+      "item_name": "lazy_take"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 476,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" The reified done-flag witness for [`any_with_witness`] and [`all_with_witness`] (C3).\"] # [doc = \"\"] # [doc = \" Records the zero-based index of the first element that triggered the done-flag:\"] # [doc = \" - for `any_with_witness`: the index of the first element satisfying the predicate.\"] # [doc = \" - for `all_with_witness`: the index of the first element *failing* the predicate.\"] # [doc = \"\"] # [doc = \" `None` means the done-flag was never fired. This makes the done-flag decision inspectable\"] # [doc = \" without coupling the result type to a specific value shape (C3 / spec §5 C3).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct AnyAllWitness { # [doc = \" Zero-based index of the element that fired the done-flag, or `None` if none did.\"] pub first_match : Option < usize > , }",
+      "reason": "struct `AnyAllWitness` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "AnyAllWitness"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/lib.rs",
+      "line": 492,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; fn fvec < E : Clone > (v : & [E]) -> Foldable < E > { Foldable :: from_vec (v . to_vec ()) } fn nums (n : usize) -> Foldable < usize > { Foldable :: from_vec ((0 .. n) . collect ()) } # [test] fn matrix_row_count_matches_expected () { assert_eq ! (guarantee_matrix :: MATRIX . len () , 21 , \"matrix must have 21 rows (18 spec rows + 2 split rows + zip_exact)\") ; } # [test] fn all_eager_rows_are_exact_and_effect_free () { for row in guarantee_matrix :: MATRIX { if row . op != \"lazy_unfold\" { assert_eq ! (row . tag , GuaranteeStrength :: Exact , \"op '{}' should be Exact (inherited from kernel `for` fold)\" , row . op) ; } assert_eq ! (row . effects , \"none\" , \"op '{}' must be effect-free\" , row . op) ; } } # [test] fn lazy_unfold_is_declared () { let row = guarantee_matrix :: MATRIX . iter () . find (| r | r . op == \"lazy_unfold\") . expect (\"lazy_unfold must be in the matrix\") ; assert_eq ! (row . tag , GuaranteeStrength :: Declared , \"lazy_unfold must be tagged Declared (not total — VR-5)\") ; assert ! (! row . totality_preserving , \"lazy_unfold is NOT totality-preserving\") ; } # [test] fn all_eager_rows_are_totality_preserving () { for row in guarantee_matrix :: MATRIX { if row . op != \"lazy_unfold\" { assert ! (row . totality_preserving , \"op '{}' must be totality-preserving\" , row . op) ; } } } # [test] fn explainable_ops_include_decision_bearing_ones () { let explainable : Vec < & str > = guarantee_matrix :: MATRIX . iter () . filter (| r | r . explainable) . map (| r | r . op) . collect () ; for op in & [\"zip\" , \"any\" , \"all\" , \"find\" , \"transduce\" , \"lazy_unfold\" , \"lazy_take\" ,] { assert ! (explainable . contains (op) , \"op '{op}' should be EXPLAIN-able\") ; } for op in & [\"map\" , \"filter\" , \"fold\" , \"count\" , \"chain\" , \"skip\" , \"take\"] { assert ! (! explainable . contains (op) , \"op '{op}' should NOT be EXPLAIN-able\") ; } } # [test] fn map_applies_f_to_each_element () { let out = map (fvec (& [1u32 , 2 , 3]) , | x | x * 2) ; assert_eq ! (out . as_slice () , & [2u32 , 4 , 6]) ; } # [test] fn map_over_empty_is_empty () { let out = map (Foldable :: < u32 > :: empty () , | x | x + 1) ; assert_eq ! (out . len () , 0) ; } # [doc = \" Property: map preserves length (totality-preserving bound).\"] # [test] fn map_preserves_length_property () { for n in 0usize ..= 64 { assert_eq ! (map (nums (n) , | x | x + 1) . len () , n , \"map must preserve length for n={n}\") ; } } # [test] fn filter_keeps_matching_elements () { let out = filter (fvec (& [1u32 , 2 , 3 , 4 , 5]) , | x | x % 2 == 0) ; assert_eq ! (out . as_slice () , & [2u32 , 4]) ; } # [test] fn filter_all_false_is_empty () { let out = filter (fvec (& [1u32 , 3 , 5]) , | _ | false) ; assert_eq ! (out . len () , 0) ; } # [doc = \" Property: filter result length ≤ source length.\"] # [test] fn filter_output_le_input_property () { for n in 0usize ..= 64 { let out = filter (nums (n) , | x | x % 2 == 0) ; assert ! (out . len () <= n , \"filter output {olen} must be ≤ {n}\" , olen = out . len ()) ; } } # [test] fn scan_running_sum () { let out = scan (fvec (& [1u32 , 2 , 3 , 4]) , 0u32 , | acc , e | acc + e) ; assert_eq ! (out . as_slice () , & [1u32 , 3 , 6 , 10]) ; } # [doc = \" Property: scan preserves length (spec §3 \\\"length-preserving fold\\\").\"] # [test] fn scan_preserves_length_property () { for n in 0usize ..= 64 { let out = scan (nums (n) , 0usize , | acc , e | acc + e) ; assert_eq ! (out . len () , n , \"scan is length-preserving for n={n}\") ; } } # [test] fn enumerate_attaches_indices () { let out = enumerate (fvec (& [\"a\" , \"b\" , \"c\"])) ; assert_eq ! (out . as_slice () , & [(0 , \"a\") , (1 , \"b\") , (2 , \"c\")]) ; } # [doc = \" Property: enumerate preserves length and indices are 0..n.\"] # [test] fn enumerate_length_and_indices_property () { for n in 0usize ..= 64 { let out = enumerate (nums (n)) ; assert_eq ! (out . len () , n) ; for (i , (idx , val)) in out . as_slice () . iter () . enumerate () { assert_eq ! (* idx , i) ; assert_eq ! (* val , i) ; } } } # [test] fn flat_map_flattens_finite_of_finite () { let out = flat_map (fvec (& [1u32 , 2 , 3]) , | x | fvec (& [x , x * 10])) ; assert_eq ! (out . as_slice () , & [1u32 , 10 , 2 , 20 , 3 , 30]) ; } # [test] fn flat_map_empty_inner_is_empty_output () { let out = flat_map (fvec (& [1u32 , 2 , 3]) , | _ | Foldable :: < u32 > :: empty ()) ; assert_eq ! (out . len () , 0) ; } # [test] fn fold_sums_correctly () { let total = fold (fvec (& [1u32 , 2 , 3 , 4 , 5]) , 0u32 , | acc , e | acc + e) ; assert_eq ! (total , 15) ; } # [test] fn fold_over_empty_returns_init () { let result = fold (Foldable :: < u32 > :: empty () , 42u32 , | acc , e | acc + e) ; assert_eq ! (result , 42) ; } # [doc = \" Property: fold left-sum = Σ(0..n).\"] # [test] fn fold_left_sum_property () { for n in 0usize ..= 64 { let sum = fold (nums (n) , 0usize , | a , e | a + e) ; let expected : usize = (0 .. n) . sum () ; assert_eq ! (sum , expected , \"fold sum must equal Σ(0..n) for n={n}\") ; } } # [test] fn reduce_none_on_empty () { assert_eq ! (reduce (Foldable ::< u32 >:: empty () , | a , b | a + b) , None) ; } # [test] fn reduce_identity_on_singleton () { assert_eq ! (reduce (fvec (& [42u32]) , | a , b | a + b) , Some (42)) ; } # [test] fn reduce_sum_on_multiple () { assert_eq ! (reduce (fvec (& [1u32 , 2 , 3 , 4]) , | a , b | a + b) , Some (10)) ; } # [test] fn count_returns_length () { assert_eq ! (count (fvec (& [1u32 , 2 , 3])) , 3) ; assert_eq ! (count (Foldable ::< u32 >:: empty ()) , 0) ; } # [doc = \" Property: count = len.\"] # [test] fn count_equals_len_property () { for n in 0usize ..= 128 { assert_eq ! (count (nums (n)) , n) ; } } # [test] fn any_true_when_pred_holds () { let (result , witness) = any_with_witness (fvec (& [1u32 , 2 , 3 , 4]) , | x | * x == 3) ; assert ! (result) ; assert_eq ! (witness . first_match , Some (2)) ; } # [test] fn any_false_when_pred_never_holds () { let (result , witness) = any_with_witness (fvec (& [1u32 , 3 , 5]) , | x | x % 2 == 0) ; assert ! (! result) ; assert_eq ! (witness . first_match , None) ; } # [test] fn any_false_on_empty () { let (result , witness) = any_with_witness (Foldable :: < u32 > :: empty () , | _ | true) ; assert ! (! result) ; assert_eq ! (witness . first_match , None) ; } # [doc = \" Property: when pred fires at index 0, first_match is Some(0) for all source lengths.\"] # [test] fn any_done_flag_first_match_at_zero_property () { for n in 1usize ..= 32 { let (result , witness) = any_with_witness (nums (n) , | x | * x == 0) ; assert ! (result , \"n={n}: pred fires at 0\") ; assert_eq ! (witness . first_match , Some (0) , \"n={n}: first_match must be 0\") ; } } # [test] fn all_true_when_pred_holds_for_all () { let (result , witness) = all_with_witness (fvec (& [2u32 , 4 , 6]) , | x | x % 2 == 0) ; assert ! (result) ; assert_eq ! (witness . first_match , None) ; } # [test] fn all_false_on_first_failure () { let (result , witness) = all_with_witness (fvec (& [2u32 , 3 , 4]) , | x | x % 2 == 0) ; assert ! (! result) ; assert_eq ! (witness . first_match , Some (1)) ; } # [test] fn all_true_on_empty () { let (result , _) = all_with_witness (Foldable :: < u32 > :: empty () , | _ | false) ; assert ! (result) ; } # [doc = \" Property: all_with_witness reports first failure index correctly.\"] # [test] fn all_witness_first_failure_property () { for n in 2usize ..= 32 { let (result , witness) = all_with_witness (nums (n) , | x | * x % 2 == 0) ; assert ! (! result , \"n={n}: element 1 fails pred\") ; assert_eq ! (witness . first_match , Some (1) , \"n={n}: first failure at index 1\") ; } } # [test] fn find_returns_first_match () { assert_eq ! (find (fvec (& [1u32 , 2 , 3 , 2 , 1]) , | x | * x == 2) , Some (2u32)) ; } # [test] fn find_none_when_absent () { assert_eq ! (find (fvec (& [1u32 , 3 , 5]) , | x | * x == 2) , None) ; } # [test] fn position_returns_first_index () { assert_eq ! (position (fvec (& [10u32 , 20 , 30 , 20]) , | x | * x == 20) , Some (1)) ; } # [test] fn position_none_when_absent () { assert_eq ! (position (fvec (& [1u32 , 3 , 5]) , | x | * x == 2) , None) ; } # [doc = \" Property: position(pred) matches the expected index for a known element.\"] # [test] fn position_correct_index_property () { let data : Foldable < u32 > = Foldable :: from_vec ((0 .. 32) . collect ()) ; assert_eq ! (position (data , | x | * x == 17) , Some (17)) ; } # [test] fn zip_equal_lengths () { let (out , outcome) = zip (fvec (& [1u32 , 2 , 3]) , fvec (& [10u32 , 20 , 30])) ; assert_eq ! (out . as_slice () , & [(1 , 10) , (2 , 20) , (3 , 30)]) ; assert ! (! outcome . was_truncated ()) ; } # [test] fn zip_truncates_to_shorter () { let (out , outcome) = zip (fvec (& [1u32 , 2 , 3 , 4]) , fvec (& [10u32 , 20])) ; assert_eq ! (out . as_slice () , & [(1 , 10) , (2 , 20)]) ; assert ! (outcome . was_truncated ()) ; assert_eq ! (outcome . left_len () , 4) ; assert_eq ! (outcome . right_len () , 2) ; assert_eq ! (outcome . result_len () , 2) ; assert_eq ! (outcome . left_excess () , 2) ; assert_eq ! (outcome . right_excess () , 0) ; } # [test] fn zip_exact_ok_on_equal_lengths () { assert ! (zip_exact (fvec (& [1u32 , 2]) , fvec (& [10u32 , 20])) . is_ok ()) ; } # [test] fn zip_exact_err_on_unequal_lengths () { let err = zip_exact (fvec (& [1u32 , 2 , 3]) , fvec (& [10u32 , 20])) . unwrap_err () ; assert_eq ! (err . left_len , 3) ; assert_eq ! (err . right_len , 2) ; } # [doc = \" Property: zip result length = min(left, right).\"] # [test] fn zip_result_length_is_min_property () { for (l , r) in [(0 , 0) , (3 , 3) , (5 , 2) , (0 , 5) , (10 , 10) , (7 , 0)] { let (out , _) = zip (nums (l) , nums (r)) ; assert_eq ! (out . len () , l . min (r)) ; } } # [test] fn chain_appends_right_after_left () { let out = chain (fvec (& [1u32 , 2]) , fvec (& [3u32 , 4 , 5])) ; assert_eq ! (out . as_slice () , & [1u32 , 2 , 3 , 4 , 5]) ; } # [doc = \" Property: chain length = left + right.\"] # [test] fn chain_length_is_sum_property () { for (l , r) in [(0 , 0) , (3 , 3) , (5 , 2) , (0 , 5)] { assert_eq ! (chain (nums (l) , nums (r)) . len () , l + r) ; } } # [test] fn take_keeps_first_n () { let out = take (fvec (& [1u32 , 2 , 3 , 4 , 5]) , 3) ; assert_eq ! (out . as_slice () , & [1u32 , 2 , 3]) ; } # [test] fn take_beyond_length_returns_all () { let out = take (fvec (& [1u32 , 2]) , 10) ; assert_eq ! (out . as_slice () , & [1u32 , 2]) ; } # [doc = \" Property: take(n) result length = min(n, source.len()).\"] # [test] fn take_length_is_min_property () { for src_len in 0usize ..= 32 { for n in 0usize ..= (src_len + 5) { assert_eq ! (take (nums (src_len) , n) . len () , src_len . min (n) , \"take({n}) on len={src_len}\") ; } } } # [test] fn skip_drops_first_n () { let out = skip (fvec (& [1u32 , 2 , 3 , 4 , 5]) , 2) ; assert_eq ! (out . as_slice () , & [3u32 , 4 , 5]) ; } # [test] fn skip_beyond_length_is_empty () { assert_eq ! (skip (fvec (& [1u32 , 2]) , 10) . len () , 0) ; } # [doc = \" Property: skip(n) result length = max(0, source.len() - n).\"] # [test] fn skip_length_property () { for src_len in 0usize ..= 32 { for n in 0usize ..= (src_len + 5) { assert_eq ! (skip (nums (src_len) , n) . len () , src_len . saturating_sub (n) , \"skip({n}) on len={src_len}\") ; } } } # [test] fn step_by_zero_is_err () { assert ! (step_by (fvec (& [1u32 , 2 , 3]) , 0) . is_err ()) ; } # [test] fn step_by_one_is_identity () { let out = step_by (fvec (& [1u32 , 2 , 3 , 4 , 5]) , 1) . unwrap () ; assert_eq ! (out . as_slice () , & [1u32 , 2 , 3 , 4 , 5]) ; } # [test] fn step_by_two_keeps_even_indices () { let out = step_by (fvec (& [0u32 , 1 , 2 , 3 , 4 , 5]) , 2) . unwrap () ; assert_eq ! (out . as_slice () , & [0u32 , 2 , 4]) ; } # [doc = \" Property: step_by(k) result length = ceil(source.len() / k) for k ≥ 1.\"] # [test] fn step_by_length_property () { for src_len in 0usize ..= 32 { for k in 1usize ..= 8 { assert_eq ! (step_by (nums (src_len) , k) . unwrap () . len () , src_len . div_ceil (k) , \"step_by({k}) on len={src_len}\") ; } } } # [test] fn transduce_map_only () { let xf = Transducer :: map (| x : u32 | x * 2) ; let result = transduce (fvec (& [1u32 , 2 , 3]) , & xf , vec ! [] , | mut acc , e | { acc . push (e) ; acc }) ; assert_eq ! (result , vec ! [2u32 , 4 , 6]) ; } # [test] fn transduce_filter_only () { let xf = Transducer :: filter (| x : & u32 | (* x) . is_multiple_of (2)) ; let result = transduce (fvec (& [1u32 , 2 , 3 , 4]) , & xf , vec ! [] , | mut acc , e | { acc . push (e) ; acc }) ; assert_eq ! (result , vec ! [2u32 , 4]) ; } # [test] fn transduce_composed_filter_then_map () { let xf = Transducer :: filter (| x : & u32 | * x > 2) . compose (Transducer :: map (| x : u32 | x * 2)) ; let result = transduce (fvec (& [1u32 , 2 , 3 , 4]) , & xf , vec ! [] , | mut acc , e | { acc . push (e) ; acc }) ; assert_eq ! (result , vec ! [6u32 , 8]) ; } # [test] fn transducer_describe_is_non_empty () { let xf = Transducer :: filter (| x : & u32 | * x > 2) . compose (Transducer :: map (| x : u32 | x * 2)) ; assert ! (! xf . describe () . is_empty ()) ; } # [doc = \" Property (spec §7-Q5 / VR-5 — `Empirical`): transduce(compose(t1, t2)) = sequential.\"] # [test] fn transduce_fusion_law_empirical () { let inputs = fvec (& [1u32 , 2 , 3 , 4 , 5 , 6]) ; let composed = Transducer :: < u32 , u32 > :: filter (| x | * x > 2) . compose (Transducer :: map (| x : u32 | x * 10)) ; let composed_result = transduce (inputs . clone () , & composed , vec ! [] , | mut acc , e | { acc . push (e) ; acc }) ; let seq : Vec < u32 > = inputs . into_vec () . into_iter () . filter (| x | * x > 2) . map (| x | x * 10) . collect () ; assert_eq ! (composed_result , seq , \"transduce(compose) must equal sequential application (Empirical)\") ; } # [test] fn lazy_unfold_and_lazy_take () { let lazy = Lazy :: unfold (0u32 , | s | Some ((s , s + 1))) ; let foldable = lazy_take (lazy , 5) ; assert_eq ! (foldable . as_slice () , & [0u32 , 1 , 2 , 3 , 4]) ; } # [test] fn lazy_take_zero_is_empty () { let lazy = Lazy :: unfold (0u32 , | s | Some ((s , s + 1))) ; assert_eq ! (lazy_take (lazy , 0) . len () , 0) ; } # [test] fn lazy_take_terminates_on_infinite_source () { let lazy = Lazy :: unfold (0u64 , | s | Some ((s , s + 1))) ; let foldable = lazy_take (lazy , 100) ; assert_eq ! (foldable . len () , 100) ; assert_eq ! (foldable . as_slice () [99] , 99u64) ; } # [test] fn lazy_terminates_at_bounded_source () { let lazy = Lazy :: unfold (0u32 , | s | if s < 3 { Some ((s , s + 1)) } else { None }) ; assert_eq ! (lazy_take (lazy , 100) . as_slice () , & [0u32 , 1 , 2]) ; } # [test] fn c1_never_silent_roundup () { assert_eq ! (reduce (Foldable ::< u32 >:: empty () , | a , b | a + b) , None) ; assert_eq ! (find (Foldable ::< u32 >:: empty () , | _ | true) , None) ; assert_eq ! (position (Foldable ::< u32 >:: empty () , | _ | true) , None) ; assert ! (step_by (fvec (& [1u32]) , 0) . is_err ()) ; assert ! (zip_exact (fvec (& [1u32]) , fvec (& [1u32 , 2])) . is_err ()) ; } # [test] fn combinators_are_pure_same_input_same_output () { let src = fvec (& [1u32 , 2 , 3]) ; assert_eq ! (map (src . clone () , | x | x * 3) . as_slice () , map (src , | x | x * 3) . as_slice ()) ; } # [test] fn composed_combinators_stay_total () { let result : Vec < usize > = map (filter (take (skip (nums (20) , 5) , 10) , | x | x % 2 == 0) , | x | { x * x }) . into_vec () ; assert_eq ! (result , vec ! [36usize , 64 , 100 , 144 , 196]) ; } # [test] fn zip_outcome_explain_is_complete () { let (_ , outcome) = zip (nums (7) , nums (3)) ; assert ! (outcome . was_truncated ()) ; assert_eq ! (outcome . left_len () , 7) ; assert_eq ! (outcome . right_len () , 3) ; assert_eq ! (outcome . result_len () , 3) ; assert_eq ! (outcome . left_excess () , 4) ; assert_eq ! (outcome . right_excess () , 0) ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 34
+}

@@ -1,0 +1,120 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+  "emitted_items": [
+    "ZipOutcome",
+    "impl ZipOutcome"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 7,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" Records the outcome of a [`zip`](crate::zip) call — specifically, which side (if any) was\"] # [doc = \" truncated and by how many elements.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact`\"] # [doc = \" The lengths are exact measurements; no approximation.\"] # [doc = \"\"] # [doc = \" # C3 (EXPLAIN): the truncation is never silent\"] # [doc = \" `was_truncated()` → whether any elements were dropped.\"] # [doc = \" `left_len()`, `right_len()`, `result_len()` → the exact counts.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZipOutcome { left : usize , right : usize , result : usize , }",
+      "reason": "struct `ZipOutcome` named field(s) `left, right, result` emitted positionally as `ZipOutcome(Binary{64}, Binary{64}, Binary{64})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 7,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Records the outcome of a [`zip`](crate::zip) call — specifically, which side (if any) was\"] # [doc = \" truncated and by how many elements.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact`\"] # [doc = \" The lengths are exact measurements; no approximation.\"] # [doc = \"\"] # [doc = \" # C3 (EXPLAIN): the truncation is never silent\"] # [doc = \" `was_truncated()` → whether any elements were dropped.\"] # [doc = \" `left_len()`, `right_len()`, `result_len()` → the exact counts.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZipOutcome { left : usize , right : usize , result : usize , }",
+      "reason": "struct `ZipOutcome` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 7,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Records the outcome of a [`zip`](crate::zip) call — specifically, which side (if any) was\"] # [doc = \" truncated and by how many elements.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact`\"] # [doc = \" The lengths are exact measurements; no approximation.\"] # [doc = \"\"] # [doc = \" # C3 (EXPLAIN): the truncation is never silent\"] # [doc = \" `was_truncated()` → whether any elements were dropped.\"] # [doc = \" `left_len()`, `right_len()`, `result_len()` → the exact counts.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZipOutcome { left : usize , right : usize , result : usize , }",
+      "reason": "struct `ZipOutcome` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 7,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" Records the outcome of a [`zip`](crate::zip) call — specifically, which side (if any) was\"] # [doc = \" truncated and by how many elements.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact`\"] # [doc = \" The lengths are exact measurements; no approximation.\"] # [doc = \"\"] # [doc = \" # C3 (EXPLAIN): the truncation is never silent\"] # [doc = \" `was_truncated()` → whether any elements were dropped.\"] # [doc = \" `left_len()`, `right_len()`, `result_len()` → the exact counts.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZipOutcome { left : usize , right : usize , result : usize , }",
+      "reason": "struct `ZipOutcome` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 23,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl ZipOutcome { # [doc = \" Construct from the three lengths. `result` = `left.min(right)` by construction.\"] # [must_use] pub (crate) fn new (left : usize , right : usize , result : usize) -> Self { ZipOutcome { left , right , result , } } # [doc = \" The number of elements in the left input.\"] # [must_use] pub fn left_len (& self) -> usize { self . left } # [doc = \" The number of elements in the right input.\"] # [must_use] pub fn right_len (& self) -> usize { self . right } # [doc = \" The number of pairs produced (= `min(left_len, right_len)`).\"] # [must_use] pub fn result_len (& self) -> usize { self . result } # [doc = \" `true` if the two inputs had different lengths (some elements were dropped).\"] # [must_use] pub fn was_truncated (& self) -> bool { self . left != self . right } # [doc = \" The number of elements dropped from the left side (0 if left was the shorter or equal).\"] # [must_use] pub fn left_excess (& self) -> usize { self . left . saturating_sub (self . result) } # [doc = \" The number of elements dropped from the right side (0 if right was the shorter or equal).\"] # [must_use] pub fn right_excess (& self) -> usize { self . right . saturating_sub (self . result) } }",
+      "reason": "dropped non-doc attribute(s) on method `new`: # [must_use]",
+      "item_name": "impl ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 23,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl ZipOutcome { # [doc = \" Construct from the three lengths. `result` = `left.min(right)` by construction.\"] # [must_use] pub (crate) fn new (left : usize , right : usize , result : usize) -> Self { ZipOutcome { left , right , result , } } # [doc = \" The number of elements in the left input.\"] # [must_use] pub fn left_len (& self) -> usize { self . left } # [doc = \" The number of elements in the right input.\"] # [must_use] pub fn right_len (& self) -> usize { self . right } # [doc = \" The number of pairs produced (= `min(left_len, right_len)`).\"] # [must_use] pub fn result_len (& self) -> usize { self . result } # [doc = \" `true` if the two inputs had different lengths (some elements were dropped).\"] # [must_use] pub fn was_truncated (& self) -> bool { self . left != self . right } # [doc = \" The number of elements dropped from the left side (0 if left was the shorter or equal).\"] # [must_use] pub fn left_excess (& self) -> usize { self . left . saturating_sub (self . result) } # [doc = \" The number of elements dropped from the right side (0 if right was the shorter or equal).\"] # [must_use] pub fn right_excess (& self) -> usize { self . right . saturating_sub (self . result) } }",
+      "reason": "dropped non-doc attribute(s) on method `left_len`: # [must_use]",
+      "item_name": "impl ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 23,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl ZipOutcome { # [doc = \" Construct from the three lengths. `result` = `left.min(right)` by construction.\"] # [must_use] pub (crate) fn new (left : usize , right : usize , result : usize) -> Self { ZipOutcome { left , right , result , } } # [doc = \" The number of elements in the left input.\"] # [must_use] pub fn left_len (& self) -> usize { self . left } # [doc = \" The number of elements in the right input.\"] # [must_use] pub fn right_len (& self) -> usize { self . right } # [doc = \" The number of pairs produced (= `min(left_len, right_len)`).\"] # [must_use] pub fn result_len (& self) -> usize { self . result } # [doc = \" `true` if the two inputs had different lengths (some elements were dropped).\"] # [must_use] pub fn was_truncated (& self) -> bool { self . left != self . right } # [doc = \" The number of elements dropped from the left side (0 if left was the shorter or equal).\"] # [must_use] pub fn left_excess (& self) -> usize { self . left . saturating_sub (self . result) } # [doc = \" The number of elements dropped from the right side (0 if right was the shorter or equal).\"] # [must_use] pub fn right_excess (& self) -> usize { self . right . saturating_sub (self . result) } }",
+      "reason": "dropped non-doc attribute(s) on method `right_len`: # [must_use]",
+      "item_name": "impl ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 23,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl ZipOutcome { # [doc = \" Construct from the three lengths. `result` = `left.min(right)` by construction.\"] # [must_use] pub (crate) fn new (left : usize , right : usize , result : usize) -> Self { ZipOutcome { left , right , result , } } # [doc = \" The number of elements in the left input.\"] # [must_use] pub fn left_len (& self) -> usize { self . left } # [doc = \" The number of elements in the right input.\"] # [must_use] pub fn right_len (& self) -> usize { self . right } # [doc = \" The number of pairs produced (= `min(left_len, right_len)`).\"] # [must_use] pub fn result_len (& self) -> usize { self . result } # [doc = \" `true` if the two inputs had different lengths (some elements were dropped).\"] # [must_use] pub fn was_truncated (& self) -> bool { self . left != self . right } # [doc = \" The number of elements dropped from the left side (0 if left was the shorter or equal).\"] # [must_use] pub fn left_excess (& self) -> usize { self . left . saturating_sub (self . result) } # [doc = \" The number of elements dropped from the right side (0 if right was the shorter or equal).\"] # [must_use] pub fn right_excess (& self) -> usize { self . right . saturating_sub (self . result) } }",
+      "reason": "dropped non-doc attribute(s) on method `result_len`: # [must_use]",
+      "item_name": "impl ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 23,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl ZipOutcome { # [doc = \" Construct from the three lengths. `result` = `left.min(right)` by construction.\"] # [must_use] pub (crate) fn new (left : usize , right : usize , result : usize) -> Self { ZipOutcome { left , right , result , } } # [doc = \" The number of elements in the left input.\"] # [must_use] pub fn left_len (& self) -> usize { self . left } # [doc = \" The number of elements in the right input.\"] # [must_use] pub fn right_len (& self) -> usize { self . right } # [doc = \" The number of pairs produced (= `min(left_len, right_len)`).\"] # [must_use] pub fn result_len (& self) -> usize { self . result } # [doc = \" `true` if the two inputs had different lengths (some elements were dropped).\"] # [must_use] pub fn was_truncated (& self) -> bool { self . left != self . right } # [doc = \" The number of elements dropped from the left side (0 if left was the shorter or equal).\"] # [must_use] pub fn left_excess (& self) -> usize { self . left . saturating_sub (self . result) } # [doc = \" The number of elements dropped from the right side (0 if right was the shorter or equal).\"] # [must_use] pub fn right_excess (& self) -> usize { self . right . saturating_sub (self . result) } }",
+      "reason": "dropped non-doc attribute(s) on method `was_truncated`: # [must_use]",
+      "item_name": "impl ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 23,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl ZipOutcome { # [doc = \" Construct from the three lengths. `result` = `left.min(right)` by construction.\"] # [must_use] pub (crate) fn new (left : usize , right : usize , result : usize) -> Self { ZipOutcome { left , right , result , } } # [doc = \" The number of elements in the left input.\"] # [must_use] pub fn left_len (& self) -> usize { self . left } # [doc = \" The number of elements in the right input.\"] # [must_use] pub fn right_len (& self) -> usize { self . right } # [doc = \" The number of pairs produced (= `min(left_len, right_len)`).\"] # [must_use] pub fn result_len (& self) -> usize { self . result } # [doc = \" `true` if the two inputs had different lengths (some elements were dropped).\"] # [must_use] pub fn was_truncated (& self) -> bool { self . left != self . right } # [doc = \" The number of elements dropped from the left side (0 if left was the shorter or equal).\"] # [must_use] pub fn left_excess (& self) -> usize { self . left . saturating_sub (self . result) } # [doc = \" The number of elements dropped from the right side (0 if right was the shorter or equal).\"] # [must_use] pub fn right_excess (& self) -> usize { self . right . saturating_sub (self . result) } }",
+      "reason": "impl method `left_excess` body: Rust `.saturating_sub` is saturating (silent clamp) — Mycelium has no saturating prim surface; desugaring to `saturating_sub(…)` would fabricate an unknown prim or lie about overflow (G2/VR-5). Gap never-silently (express gap-close 2026-07-16).",
+      "item_name": "impl ZipOutcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/zip_outcome.rs",
+      "line": 23,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl ZipOutcome { # [doc = \" Construct from the three lengths. `result` = `left.min(right)` by construction.\"] # [must_use] pub (crate) fn new (left : usize , right : usize , result : usize) -> Self { ZipOutcome { left , right , result , } } # [doc = \" The number of elements in the left input.\"] # [must_use] pub fn left_len (& self) -> usize { self . left } # [doc = \" The number of elements in the right input.\"] # [must_use] pub fn right_len (& self) -> usize { self . right } # [doc = \" The number of pairs produced (= `min(left_len, right_len)`).\"] # [must_use] pub fn result_len (& self) -> usize { self . result } # [doc = \" `true` if the two inputs had different lengths (some elements were dropped).\"] # [must_use] pub fn was_truncated (& self) -> bool { self . left != self . right } # [doc = \" The number of elements dropped from the left side (0 if left was the shorter or equal).\"] # [must_use] pub fn left_excess (& self) -> usize { self . left . saturating_sub (self . result) } # [doc = \" The number of elements dropped from the right side (0 if right was the shorter or equal).\"] # [must_use] pub fn right_excess (& self) -> usize { self . right . saturating_sub (self . result) } }",
+      "reason": "impl method `right_excess` body: Rust `.saturating_sub` is saturating (silent clamp) — Mycelium has no saturating prim surface; desugaring to `saturating_sub(…)` would fabricate an unknown prim or lie about overflow (G2/VR-5). Gap never-silently (express gap-close 2026-07-16).",
+      "item_name": "impl ZipOutcome"
+    }
+  ],
+  "total_top_level_items": 2
+}

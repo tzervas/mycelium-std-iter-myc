@@ -1,0 +1,27 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/foldable.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/foldable.rs",
+      "line": 14,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [derive (Debug , Clone , PartialEq , Eq)] pub struct Foldable < E > { inner : Vec < E > , }",
+      "reason": "struct `Foldable` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Foldable"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/foldable.rs",
+      "line": 19,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl < E > Foldable < E > { # [doc = \" Construct a `Foldable` from a `Vec<E>`.\"] # [must_use] pub fn from_vec (v : Vec < E >) -> Self { Foldable { inner : v } } # [doc = \" An empty `Foldable` (the `nil` spine).\"] # [must_use] pub fn empty () -> Self { Foldable { inner : Vec :: new () } } # [doc = \" The number of elements (the spine length).\"] # [must_use] pub fn len (& self) -> usize { self . inner . len () } # [doc = \" `true` iff the spine is `nil`.\"] # [must_use] pub fn is_empty (& self) -> bool { self . inner . is_empty () } # [doc = \" Borrow the elements as a slice.\"] # [must_use] pub fn as_slice (& self) -> & [E] { & self . inner } # [doc = \" Consume `self` and return the backing `Vec<E>`.\"] # [must_use] pub fn into_vec (self) -> Vec < E > { self . inner } }",
+      "reason": "no member of this impl block could be transpiled (6 sub-issue(s)): impl method `from_vec` body: struct literal `Foldable { .. }` — not an in-file single-ctor struct or enum struct-variant that emits (no constructor to build; a cross-nodule variant is an honest DN-113/DN-134-OQ-2 resolvability gap, never a fabricated out-of-file reference — VR-5/G2); impl method `empty` body: struct literal `Foldable { .. }` — not an in-file single-ctor struct or enum struct-variant that emits (no constructor to build; a cross-nodule variant is an honest DN-113/DN-134-OQ-2 resolvability gap, never a fabricated out-of-file reference — VR-5/G2); impl method `len` body: method call `.len(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__len` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `len(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `is_empty` body: method call `.is_empty(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__is_empty` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `is_empty(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `as_slice` body: field projection `self.inner` on `Foldable[E]` — not an in-file single-ctor struct that emits (an enum / external / non-resolvable type has no constructor to `match` against); impl method `into_vec` body: field projection `self.inner` on `Foldable[E]` — not an in-file single-ctor struct that emits (an enum / external / non-resolvable type has no constructor to `match` against)",
+      "item_name": "Foldable < E >"
+    }
+  ],
+  "total_top_level_items": 2
+}

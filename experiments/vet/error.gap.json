@@ -1,0 +1,130 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+  "emitted_items": [
+    "ZeroStep",
+    "ZipLengthMismatch"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 3,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use core :: fmt ;",
+      "reason": "`use core::fmt` — `core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 5,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Error returned by [`step_by`](crate::step_by) when `k = 0`.\"] # [doc = \"\"] # [doc = \" A step of zero is a genuine error — not a clamp-to-1 (C1 / spec §4). The error type is a\"] # [doc = \" unit struct: there is nothing more to say beyond \\\"the step was zero\\\".\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (the error itself is a precise diagnosis)\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZeroStep ;",
+      "reason": "struct `ZeroStep` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "ZeroStep"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 5,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Error returned by [`step_by`](crate::step_by) when `k = 0`.\"] # [doc = \"\"] # [doc = \" A step of zero is a genuine error — not a clamp-to-1 (C1 / spec §4). The error type is a\"] # [doc = \" unit struct: there is nothing more to say beyond \\\"the step was zero\\\".\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (the error itself is a precise diagnosis)\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZeroStep ;",
+      "reason": "struct `ZeroStep` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "ZeroStep"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 5,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" Error returned by [`step_by`](crate::step_by) when `k = 0`.\"] # [doc = \"\"] # [doc = \" A step of zero is a genuine error — not a clamp-to-1 (C1 / spec §4). The error type is a\"] # [doc = \" unit struct: there is nothing more to say beyond \\\"the step was zero\\\".\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (the error itself is a precise diagnosis)\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZeroStep ;",
+      "reason": "struct `ZeroStep` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "ZeroStep"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 14,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl fmt :: Display for ZeroStep { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { f . write_str (\"step_by: k = 0 is not a valid step size (must be ≥ 1)\") } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "ZeroStep"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 20,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "mycelium_std_core :: impl_std_error ! (ZeroStep) ;",
+      "reason": "item-position macro invocation — no macro system in this grammar",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 22,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" Error returned by [`zip_exact`](crate::zip_exact) when the left and right `Foldable`s have\"] # [doc = \" different lengths.\"] # [doc = \"\"] # [doc = \" Carries both lengths so the caller can surface the mismatch (C1 / C3 EXPLAIN).\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (the error is a precise diagnosis — no approximation)\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZipLengthMismatch { # [doc = \" The number of elements in the left `Foldable`.\"] pub left_len : usize , # [doc = \" The number of elements in the right `Foldable`.\"] pub right_len : usize , }",
+      "reason": "struct `ZipLengthMismatch` named field(s) `left_len, right_len` emitted positionally as `ZipLengthMismatch(Binary{64}, Binary{64})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "ZipLengthMismatch"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 22,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Error returned by [`zip_exact`](crate::zip_exact) when the left and right `Foldable`s have\"] # [doc = \" different lengths.\"] # [doc = \"\"] # [doc = \" Carries both lengths so the caller can surface the mismatch (C1 / C3 EXPLAIN).\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (the error is a precise diagnosis — no approximation)\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZipLengthMismatch { # [doc = \" The number of elements in the left `Foldable`.\"] pub left_len : usize , # [doc = \" The number of elements in the right `Foldable`.\"] pub right_len : usize , }",
+      "reason": "struct `ZipLengthMismatch` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "ZipLengthMismatch"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 22,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Error returned by [`zip_exact`](crate::zip_exact) when the left and right `Foldable`s have\"] # [doc = \" different lengths.\"] # [doc = \"\"] # [doc = \" Carries both lengths so the caller can surface the mismatch (C1 / C3 EXPLAIN).\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (the error is a precise diagnosis — no approximation)\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZipLengthMismatch { # [doc = \" The number of elements in the left `Foldable`.\"] pub left_len : usize , # [doc = \" The number of elements in the right `Foldable`.\"] pub right_len : usize , }",
+      "reason": "struct `ZipLengthMismatch` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "ZipLengthMismatch"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 22,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" Error returned by [`zip_exact`](crate::zip_exact) when the left and right `Foldable`s have\"] # [doc = \" different lengths.\"] # [doc = \"\"] # [doc = \" Carries both lengths so the caller can surface the mismatch (C1 / C3 EXPLAIN).\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (the error is a precise diagnosis — no approximation)\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct ZipLengthMismatch { # [doc = \" The number of elements in the left `Foldable`.\"] pub left_len : usize , # [doc = \" The number of elements in the right `Foldable`.\"] pub right_len : usize , }",
+      "reason": "struct `ZipLengthMismatch` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "ZipLengthMismatch"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 36,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl fmt :: Display for ZipLengthMismatch { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { write ! (f , \"zip_exact: length mismatch — left has {} elements, right has {}\" , self . left_len , self . right_len) } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "ZipLengthMismatch"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/error.rs",
+      "line": 46,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "mycelium_std_core :: impl_std_error ! (ZipLengthMismatch) ;",
+      "reason": "item-position macro invocation — no macro system in this grammar",
+      "item_name": null
+    }
+  ],
+  "total_top_level_items": 7
+}

@@ -1,0 +1,43 @@
+// nodule: std.iter.zip_outcome
+// [`ZipOutcome`] — the EXPLAIN artifact for `zip` (C3 / spec §4 / Q1).
+//
+// `zip` truncates to the shorter spine (the never-silent floor, C1). The [`ZipOutcome`] makes
+// the truncation point *inspectable*: a caller can always determine exactly which side was
+// longer and how many elements were dropped, without parsing the output (C3 no black boxes).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule std.iter.zip_outcome;
+
+// Records the outcome of a [`zip`](crate::zip) call — specifically, which side (if any) was
+// truncated and by how many elements.
+//
+// # Guarantee tag: `Exact`
+// The lengths are exact measurements; no approximation.
+//
+// # C3 (EXPLAIN): the truncation is never silent
+// `was_truncated()` → whether any elements were dropped.
+// `left_len()`, `right_len()`, `result_len()` → the exact counts.
+pub type ZipOutcome = ZipOutcome(Binary{64}, Binary{64}, Binary{64});
+
+impl Show[ZipOutcome] for ZipOutcome {
+  fn render(x: ZipOutcome) => Bytes =
+    match x { ZipOutcome(p0, p1, p2) => bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat("ZipOutcome(", render(p0)), ", "), render(p1)), ", "), render(p2)), ")") };
+};
+
+fn eq_ZipOutcome(a: ZipOutcome, b: ZipOutcome) => Binary{1} =
+    match a { ZipOutcome(p0, p1, p2) => match b { ZipOutcome(q0, q1, q2) => and(and(eq(p0, q0), eq(p1, q1)), eq(p2, q2)) } };
+
+impl ZipOutcome {
+  // Construct from the three lengths. `result` = `left.min(right)` by construction.
+  // Declared: renamed `impl ZipOutcome { fn new }` -> `_10ZipOutcome3new` (D4 inherent-impl flat-fn desugar + DN-140 length-prefix mangle, M-664).
+  fn _10ZipOutcome3new(left: Binary{64}, right: Binary{64}, result: Binary{64}) => ZipOutcome = ZipOutcome(left, right, result);
+  // The number of elements in the left input.
+  fn left_len(self: ZipOutcome) => Binary{64} = (match self { ZipOutcome(p0, _, _) => p0 });
+  // The number of elements in the right input.
+  fn right_len(self: ZipOutcome) => Binary{64} = (match self { ZipOutcome(_, p1, _) => p1 });
+  // The number of pairs produced (= `min(left_len, right_len)`).
+  fn result_len(self: ZipOutcome) => Binary{64} = (match self { ZipOutcome(_, _, p2) => p2 });
+  // `true` if the two inputs had different lengths (some elements were dropped).
+  fn was_truncated(self: ZipOutcome) => Bool = (match eq((match self { ZipOutcome(p0, _, _) => p0 }), (match self { ZipOutcome(_, p1, _) => p1 })) { 0b1 => False, _ => True });
+};

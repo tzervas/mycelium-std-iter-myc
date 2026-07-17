@@ -1,0 +1,57 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/transducer.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/transducer.rs",
+      "line": 21,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A composable, source-independent step transformer.\"] # [doc = \"\"] # [doc = \" The type parameters are:\"] # [doc = \" - `E`: the element type of the source `Foldable`.\"] # [doc = \" - `F`: the element type of the output after transformation.\"] # [doc = \"\"] # [doc = \" Transducers compose left-to-right via [`compose`](Transducer::compose):\"] # [doc = \" `t1.compose(t2)` applies `t1` first, then `t2`.\"] pub struct Transducer < E , F > { # [doc = \" The transformation function: a `Vec<E>` in, `Vec<F>` out.\"] # [doc = \"\"] # [doc = \" # Design note\"] # [doc = \" This uses a boxed closure over `Vec` for simplicity (Q2 / the Foldable-trait pending). A\"] # [doc = \" trait-based generalization would replace the Vec boundary with a fold callback. The\"] # [doc = \" observable behaviour is identical; the closure boundary only affects intermediate\"] # [doc = \" allocation.\"] # [allow (clippy :: type_complexity)] transform : Box < dyn Fn (Vec < E >) -> Vec < F > > , # [doc = \" Human-readable description of this step (for EXPLAIN / C3).\"] description : String , }",
+      "reason": "struct `Transducer` has a field type with no confirmed mapping (unsupported Rust type form `dyn Fn (Vec < E >) -> Vec < F >`)",
+      "item_name": "Transducer"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/transducer.rs",
+      "line": 43,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "impl < E : 'static , F : 'static > Transducer < E , F > { # [doc = \" Construct a transducer from a raw transformation function.\"] # [doc = \"\"] # [doc = \" Prefer the named constructors (`map`, `filter`) for common shapes.\"] pub fn new (description : impl Into < String > , f : impl Fn (Vec < E >) -> Vec < F > + 'static) -> Self { Transducer { transform : Box :: new (f) , description : description . into () , } } # [doc = \" Apply the transformation to a `Vec<E>`, producing a `Vec<F>`.\"] # [doc = \"\"] # [doc = \" Called by [`crate::transduce`]; not usually called directly.\"] pub (crate) fn apply (& self , v : Vec < E >) -> Vec < F > { (self . transform) (v) } # [doc = \" A human-readable description of the step pipeline (EXPLAIN artifact, C3).\"] # [must_use] pub fn describe (& self) -> & str { & self . description } # [doc = \" Compose `self` with `next`: `self.compose(next)` applies `self` first, then `next`.\"] # [doc = \"\"] # [doc = \" The resulting transducer's description lists both steps in order (C3 / EXPLAIN).\"] # [doc = \"\"] # [doc = \" # Associativity\"] # [doc = \" `compose` is associative: `(t1.compose(t2)).compose(t3)` and\"] # [doc = \" `t1.compose(t2.compose(t3))` produce the same output for every input. This is asserted\"] # [doc = \" empirically in tests (spec §7-Q5; NOT tagged `Proven` without a checked theorem — VR-5).\"] pub fn compose < G : 'static > (self , next : Transducer < F , G >) -> Transducer < E , G > { let desc = format ! (\"{} → {}\" , self . description , next . description) ; Transducer { transform : Box :: new (move | v | next . apply (self . apply (v))) , description : desc , } } }",
+      "reason": "impl type parameter `E` carries a bound with no confirmed mapping (a lifetime bound or another non-trait bound form) — DN-131 v1 covers plain trait-name bounds only",
+      "item_name": "Transducer < E , F >"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/transducer.rs",
+      "line": 84,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "impl < E : 'static , F : 'static > Transducer < E , F > where F : Clone , { }",
+      "reason": "impl type parameter `E` carries a bound with no confirmed mapping (a lifetime bound or another non-trait bound form) — DN-131 v1 covers plain trait-name bounds only",
+      "item_name": "Transducer < E , F >"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/transducer.rs",
+      "line": 93,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "impl < E : 'static > Transducer < E , E > { # [doc = \" A transducer that keeps only elements satisfying `pred`.\"] pub fn filter (pred : impl Fn (& E) -> bool + 'static) -> Transducer < E , E > { Transducer :: new (\"filter\" , move | v | { v . into_iter () . filter (| e | pred (e)) . collect () }) } }",
+      "reason": "impl type parameter `E` carries a bound with no confirmed mapping (a lifetime bound or another non-trait bound form) — DN-131 v1 covers plain trait-name bounds only",
+      "item_name": "Transducer < E , E >"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-iter/src/transducer.rs",
+      "line": 102,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "impl < E : 'static , F : 'static > Transducer < E , F > { # [doc = \" A transducer that maps each element with `f`.\"] pub fn map (f : impl Fn (E) -> F + 'static) -> Transducer < E , F > { Transducer :: new (\"map\" , move | v | v . into_iter () . map (& f) . collect ()) } }",
+      "reason": "impl type parameter `E` carries a bound with no confirmed mapping (a lifetime bound or another non-trait bound form) — DN-131 v1 covers plain trait-name bounds only",
+      "item_name": "Transducer < E , F >"
+    }
+  ],
+  "total_top_level_items": 5
+}

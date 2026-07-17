@@ -1,0 +1,38 @@
+// nodule: std.iter.error
+// Error types for `std.iter` — all fallible ops return these explicitly (C1 never-silent).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule std.iter.error;
+
+// Error returned by [`step_by`](crate::step_by) when `k = 0`.
+//
+// A step of zero is a genuine error — not a clamp-to-1 (C1 / spec §4). The error type is a
+// unit struct: there is nothing more to say beyond "the step was zero".
+//
+// # Guarantee tag: `Exact` (the error itself is a precise diagnosis)
+pub type ZeroStep = ZeroStep;
+
+impl Show[ZeroStep] for ZeroStep {
+  fn render(x: ZeroStep) => Bytes =
+    "ZeroStep";
+};
+
+fn eq_ZeroStep(a: ZeroStep, b: ZeroStep) => Binary{1} =
+    0b1;
+
+// Error returned by [`zip_exact`](crate::zip_exact) when the left and right `Foldable`s have
+// different lengths.
+//
+// Carries both lengths so the caller can surface the mismatch (C1 / C3 EXPLAIN).
+//
+// # Guarantee tag: `Exact` (the error is a precise diagnosis — no approximation)
+type ZipLengthMismatch = ZipLengthMismatch(Binary{64}, Binary{64});
+
+impl Show[ZipLengthMismatch] for ZipLengthMismatch {
+  fn render(x: ZipLengthMismatch) => Bytes =
+    match x { ZipLengthMismatch(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("ZipLengthMismatch(", render(p0)), ", "), render(p1)), ")") };
+};
+
+fn eq_ZipLengthMismatch(a: ZipLengthMismatch, b: ZipLengthMismatch) => Binary{1} =
+    match a { ZipLengthMismatch(p0, p1) => match b { ZipLengthMismatch(q0, q1) => and(eq(p0, q0), eq(p1, q1)) } };
